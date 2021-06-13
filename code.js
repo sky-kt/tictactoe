@@ -1,14 +1,3 @@
-let BOARD = document.getElementById('board')
-
-document.querySelectorAll('.section').forEach(item => {
-    item.addEventListener('click', event => {
-        let symbol = boardManager.setSymbol(item.id.replace('sec', ''))
-        updateBoard(item.id, symbol)
-        checkIfWinner()
-        console.log(gameBoard.board)
-    })
-})
-
 let updateBoard = (section, symbol) => {
     let sectionToChange = document.getElementById(section)
     console.log(symbol)
@@ -66,6 +55,8 @@ let checkIfWinner = () => {
             winner = 'X'
         } else if(board[2] === 'O') winner = 'O'
     }
+
+    //state winner
     if (winner !== "") {
         alert(`${winner} wins!`)
         location.reload()
@@ -78,17 +69,32 @@ let checkIfWinner = () => {
 
 let boardManager = (() => {
     let counter = 1
-    let setSymbol = (tileIndex) => {
-        if (counter++ % 2 != 0) {
-            gameBoard.board[tileIndex] = 'X'
-            return 'X'
+    let playerSymbol, otherSymbol
+
+    let setSymbol = (desiredSymbol) => {
+        if(desiredSymbol === 'X') {
+            playerSymbol = 'X'
+            otherSymbol = 'O'
         }
         else {
-            gameBoard.board[tileIndex] = 'O'
-            return 'O'
+            playerSymbol = 'O'
+            otherSymbol = 'X'
+        } 
+    }
+
+    let getSymbol = (tileIndex) => {
+        if (counter++ % 2 != 0) {
+            gameBoard.board[tileIndex] = playerSymbol
+            console.log(playerSymbol)
+            return playerSymbol
+        }
+        else {
+            gameBoard.board[tileIndex] = otherSymbol
+            console.log(playerSymbol)
+            return otherSymbol
         }
     }
-    return { counter, setSymbol }
+    return { counter, getSymbol, setSymbol }
 })()
 
 let gameBoard = (() => {
@@ -99,3 +105,17 @@ let gameBoard = (() => {
     ] 
     return { board }
 })()
+
+let BOARD = document.getElementById('board')
+let desiredSymbol = prompt("What symbol do you want? (X, O)")
+
+boardManager.setSymbol(desiredSymbol)
+
+document.querySelectorAll('.section').forEach(item => {
+    item.addEventListener('click', event => {
+        let symbol = boardManager.getSymbol(item.id.replace('sec', ''))
+        updateBoard(item.id, symbol)
+        checkIfWinner()
+        console.log(gameBoard.board)
+    })
+})
