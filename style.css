@@ -1,0 +1,28 @@
+h1 {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#board {
+    display: grid;
+    width: 800px;
+    height: 800px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    border-style: none dashed dashed none;
+}
+
+.boardStyler {
+    display: flex;
+    justify-content: center;
+}
+
+.section {
+    display: flex;
+    border-style: dashed none none dashed;
+    font-size: 80px;
+    font-family: 'Courier New', Courier, monospace;
+    justify-content: center;
+    align-items: center;
+}
