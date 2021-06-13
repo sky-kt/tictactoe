@@ -1,0 +1,52 @@
+<header>
+    <title>Tic Tac Toe</title>
+    <style>
+        :root {
+        }
+
+        h1 {
+            color: rgb(0, 0, 0);
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #board {
+            display: grid;
+            width: 800px;
+            height: 800px;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            border-style: none dashed dashed none;
+        }
+
+        .boardStyler {
+            display: flex;
+            justify-content: center;
+        }
+
+        .section {
+            border-style: dashed none none dashed;
+        }
+    </style>
+</header>
+<body>
+    <h1>Tic Tac Toe</h1>
+    <div class="boardStyler">
+        <div id="board">
+            <div id="sec1" class="section"></div>
+            <div id="sec2" class="section"></div>
+            <div id="sec3" class="section"></div>
+            <div id="sec4" class="section"></div>
+            <div id="sec5" class="section"></div>
+            <div id="sec6" class="section"></div>
+            <div id="sec7" class="section"></div>
+            <div id="sec8" class="section"></div>
+            <div id="sec9" class="section"></div>
+        </div>
+    </div>
+</body>
+<footer>
+    <script src="code.js">
+
+    </script>
+</footer>
